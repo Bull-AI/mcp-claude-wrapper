@@ -47,7 +47,7 @@ Load the released wrapper for the current Claude Code session:
 ```bash
 git clone https://github.com/Bull-AI/bull-ai-market-research-claude-wrapper.git
 cd bull-ai-market-research-claude-wrapper
-git checkout v0.1.1
+git checkout v0.1.3
 claude --plugin-dir .
 ```
 
