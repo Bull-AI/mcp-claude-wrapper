@@ -40,6 +40,20 @@ origin-service URL.
 remaining eight tools cost one credit after a successful result. Authentication,
 availability, and rate limits apply to every tool.
 
+## Install
+
+Load the released wrapper for the current Claude Code session:
+
+```bash
+git clone https://github.com/Bull-AI/bull-ai-market-research-claude-wrapper.git
+cd bull-ai-market-research-claude-wrapper
+git checkout v0.1.1
+claude --plugin-dir .
+```
+
+Complete the normal OAuth flow when Claude Code prompts for it. The wrapper is
+session-scoped: it adds no local proxy, credentials, or alternate endpoint.
+
 ## Support
 
 - [Privacy](https://www.bull-ai.in/privacy)
