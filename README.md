@@ -57,7 +57,7 @@ session-scoped: it adds no local proxy, credentials, or alternate endpoint.
 ## Support
 
 - [Privacy](https://www.bull-ai.in/privacy)
-- [Terms](https://www.bull-ai.in/terms-and-conditions)
+- [Terms](https://www.bull-ai.in/terms)
 - [Support and security contact](https://www.bull-ai.in/contact)
 
 Do not include access tokens, authorization codes, PKCE values, cookies, or
