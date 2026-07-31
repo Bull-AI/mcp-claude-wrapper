@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "bull-ai-market-research": {
+      "type": "http",
+      "url": "https://www.bull-ai.in/mcp"
+    }
+  }
+}

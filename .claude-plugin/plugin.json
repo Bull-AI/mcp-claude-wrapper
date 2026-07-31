@@ -1,0 +1,10 @@
+{
+  "name": "bull-ai-market-research",
+  "version": "0.1.0",
+  "description": "Authenticated, read-focused market research for listed Indian companies and investor documents.",
+  "author": {
+    "name": "Bull AI"
+  },
+  "license": "UNLICENSED",
+  "mcpServers": "./.mcp.json"
+}
