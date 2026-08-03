@@ -45,9 +45,9 @@ availability, and rate limits apply to every tool.
 Load the released wrapper for the current Claude Code session:
 
 ```bash
-git clone https://github.com/Bull-AI/bull-ai-market-research-claude-wrapper.git
-cd bull-ai-market-research-claude-wrapper
-git checkout v0.1.3
+git clone https://github.com/Bull-AI/mcp-claude-wrapper.git
+cd mcp-claude-wrapper
+git checkout v0.1.4
 claude --plugin-dir .
 ```
 
