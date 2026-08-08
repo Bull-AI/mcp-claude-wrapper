@@ -11,7 +11,7 @@ Use this skill when a user asks to place bulk, block, or insider market transact
 
 1. Resolve one company with `search_companies`.
 2. Retrieve bounded transaction pages with `get_company_market_transactions`. Use `all` when multiple transaction types are requested, or make separate bounded calls for `bulk`, `block`, and `insider` when clearer.
-3. Retrieve bounded corporate-action pages with `get_company_corporate_actions`. Supported filters are bonus, dividend, split, rights, name change, merger, demerger, and restructuring.
+3. Retrieve bounded corporate-action pages with `get_company_corporate_actions`. Use `all` when multiple action types are requested; the supported individual filters are `bonus`, `dividend`, and `split`.
 4. Neither source accepts a date-window filter. Select the requested comparison window from returned records after retrieval.
 5. Follow pagination only to a disclosed cap or until exhausted. If pagination remains, label the result bounded and potentially incomplete.
 6. Preserve returned transaction party names and actions. Do not relabel a party as a promoter, director, or another role that is not supplied.

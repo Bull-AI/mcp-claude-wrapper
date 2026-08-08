@@ -60,7 +60,7 @@ Load the released plugin for the current Claude Code session:
 ```bash
 git clone https://github.com/Bull-AI/mcp-claude-wrapper.git
 cd mcp-claude-wrapper
-git checkout v0.2.0
+git checkout v0.2.1
 claude --plugin-dir .
 ```
 
