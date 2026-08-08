@@ -1,58 +1,70 @@
-# Bull AI Market Research Claude Wrapper
+# Bull AI Claude Plugin
 
-This wrapper connects Claude to Bull AI's remote MCP server for authenticated,
-read-focused research on listed Indian companies and their investor documents.
+Bull AI connects Claude to company documents and data for NSE/BSE-listed Indian companies.
 
 ```text
 https://www.bull-ai.in/mcp
 ```
 
-The remote server owns OAuth discovery, dynamic client registration, consent,
-scopes, rate limits, billing, and the public tool schemas. This package contains
-no local server, credentials, company data, private application code, or
-deployment configuration.
+The plugin connects Claude to Bull AI's existing ten remote MCP tools and includes five workflow skills for using them effectively. The MCP server remains the canonical source of the tools' names, descriptions, schemas, annotations, and results. Claude discovers that tool surface from the server when it connects; this repository does not duplicate or redefine it.
 
-## Catalog
+The remote server owns OAuth discovery, dynamic client registration, consent, scopes, rate limits, billing, and the public tool schemas. This package contains only the public connection configuration, workflow skills, documentation, and security guidance—no credentials, company data, private application code, or non-public service configuration.
 
-The remote server exposes these ten tools:
+## Remote MCP tools
 
 1. `search_companies`
 2. `search_company_documents`
 3. `list_document_availability`
 4. `get_document_chunks`
-5. `get_company_guidance`
-6. `get_company_classification`
-7. `get_company_peers`
-8. `get_company_market_transactions`
-9. `get_company_corporate_actions`
+5. `get_company_classification`
+6. `get_company_peers`
+7. `get_company_market_transactions`
+8. `get_company_corporate_actions`
+9. `get_company_guidance`
 10. `get_company_counterparties`
 
-The wrapper adds no tools or skills. It does not support trading, order
-placement, money movement, portfolio changes, or personalized investment advice.
+## Included skills
 
-## Authentication and Billing
+- **Guidance versus delivery** — compare management guidance with later company-reported outcomes while preserving temporal order, comparability limits, and paired sources.
+- **Moat and peers** — map management-claimed competitive advantages against a bounded listed-peer context without treating claims as verified moats.
+- **Revenue segmentation** — extract reported revenue segments from company documents and calculate mix changes only from cited operands.
+- **Insider actions** — place bulk, block, or insider market transactions beside corporate-action timing without implying causation.
+- **Counterparty map** — map disclosed counterparties and identify listed-company matches only when public identity evidence supports them.
 
-Connect through the normal OAuth flow. The canonical resource is exactly
-`https://www.bull-ai.in/mcp`; do not substitute a local, staging, legacy, or
-origin-service URL.
+The skills teach Claude how to select and chain Bull AI's existing remote tools. They do not replace or override the server's canonical tool descriptions.
 
-`search_companies` and `list_document_availability` are free utilities. The
-remaining eight tools cost one credit after a successful result. Authentication,
-availability, and rate limits apply to every tool.
+## Sources and output conventions
+
+Public answers cite underlying company documents or returned source metadata where available, disclose missing or bounded coverage, and separate reported facts, management statements, model calculations, and interpretation. Tool-routing details, opaque identifiers, cursors, and backend execution narration stay out of normal answers.
+
+Monetary values are normalized to Indian rupees crores (`₹ crore`) where possible. Foreign-currency amounts retain the reported value followed by an approximate ₹-crore conversion in brackets, with the exchange-rate source, date or period, and calculation basis disclosed.
+
+Results are informational. Bull AI does not support trading, order placement, money movement, portfolio changes, or personalized investment advice.
+
+## Authentication and billing
+
+Connect through the normal OAuth flow. The canonical resource is exactly:
+
+```text
+https://www.bull-ai.in/mcp
+```
+
+Do not substitute a local, staging, legacy, or origin-service URL.
+
+`search_companies` and `list_document_availability` are free utilities. The remaining eight tools cost one credit after a successful result. Authentication, availability, and rate limits apply to every tool.
 
 ## Install
 
-Load the released wrapper for the current Claude Code session:
+Load the released plugin for the current Claude Code session:
 
 ```bash
 git clone https://github.com/Bull-AI/mcp-claude-wrapper.git
 cd mcp-claude-wrapper
-git checkout v0.1.4
+git checkout v0.2.0
 claude --plugin-dir .
 ```
 
-Complete the normal OAuth flow when Claude Code prompts for it. The wrapper is
-session-scoped: it adds no local proxy, credentials, or alternate endpoint.
+Complete the normal OAuth flow when Claude Code prompts for it. The plugin is session-scoped and adds no local proxy, credentials, or alternate endpoint.
 
 ## Support
 
@@ -60,8 +72,7 @@ session-scoped: it adds no local proxy, credentials, or alternate endpoint.
 - [Terms](https://www.bull-ai.in/terms)
 - [Support and security contact](https://www.bull-ai.in/contact)
 
-Do not include access tokens, authorization codes, PKCE values, cookies, or
-customer data in support requests.
+Do not include access tokens, authorization codes, PKCE values, cookies, or customer data in support requests.
 
 ## Validation
 

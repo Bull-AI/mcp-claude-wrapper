@@ -1,7 +1,7 @@
 {
-  "name": "bull-ai-market-research",
-  "version": "0.1.4",
-  "description": "Authenticated, read-focused market research for listed Indian companies and investor documents.",
+  "name": "bull-ai",
+  "version": "0.2.0",
+  "description": "Indian stock market company documents and data for Claude.",
   "author": {
     "name": "Bull AI"
   },
