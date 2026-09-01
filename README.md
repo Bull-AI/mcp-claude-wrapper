@@ -6,7 +6,7 @@ Bull AI connects Claude to company documents and data for NSE/BSE-listed Indian 
 https://www.bull-ai.in/mcp
 ```
 
-The plugin connects Claude to Bull AI's existing ten remote MCP tools and includes five workflow skills for using them effectively. The MCP server remains the canonical source of the tools' names, descriptions, schemas, annotations, and results. Claude discovers that tool surface from the server when it connects; this repository does not duplicate or redefine it.
+The plugin connects Claude to Bull AI's eleven remote MCP tools and includes five workflow skills for using them effectively. The MCP server remains the canonical source of the tools' names, descriptions, schemas, annotations, and results. Claude discovers that tool surface from the server when it connects; this repository does not duplicate or redefine it.
 
 The remote server owns OAuth discovery, dynamic client registration, consent, scopes, rate limits, billing, and the public tool schemas. This package contains only the public connection configuration, workflow skills, documentation, and security guidance—no credentials, company data, private application code, or non-public service configuration.
 
@@ -22,6 +22,7 @@ The remote server owns OAuth discovery, dynamic client registration, consent, sc
 8. `get_company_corporate_actions`
 9. `get_company_guidance`
 10. `get_company_counterparties`
+11. `get_mcp_usage`
 
 ## Included skills
 
@@ -51,7 +52,9 @@ https://www.bull-ai.in/mcp
 
 Do not substitute a local, staging, legacy, or origin-service URL.
 
-`search_companies` and `list_document_availability` are free utilities. The remaining eight tools cost one credit after a successful result. Authentication, availability, and rate limits apply to every tool.
+`search_companies`, `list_document_availability`, and `get_mcp_usage` are free utilities. The remaining eight tools cost one credit after a successful result. Authentication, availability, and rate limits apply to every tool.
+
+`get_mcp_usage` is an authenticated, read-only utility that reports the current billing-cycle allowance, usage, reset time, and per-tool breakdown. It remains available when the metered allowance is exhausted and links to [MCP usage](https://www.bull-ai.in/mcp/usage). It requires the least-privilege `mcp:usage:read` scope. Connections authorized before this tool was added must grant the new scope before the tool can run. Claude should request incremental consent; reconnect only if it cannot complete that authorization step-up.
 
 ## Install
 
@@ -60,7 +63,7 @@ Load the released plugin for the current Claude Code session:
 ```bash
 git clone https://github.com/Bull-AI/mcp-claude-wrapper.git
 cd mcp-claude-wrapper
-git checkout v0.2.1
+git checkout v0.3.0
 claude --plugin-dir .
 ```
 
