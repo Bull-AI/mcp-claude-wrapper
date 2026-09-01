@@ -52,7 +52,7 @@ https://www.bull-ai.in/mcp
 
 Do not substitute a local, staging, legacy, or origin-service URL.
 
-`search_companies`, `list_document_availability`, and `get_mcp_usage` are free utilities. The remaining eight tools cost one credit after a successful result. Authentication, availability, and rate limits apply to every tool.
+`search_companies`, `list_document_availability`, and `get_mcp_usage` are free utilities. Each of the remaining eight tools counts as one tool call against the monthly allowance after a successful result. Authentication, availability, and rate limits apply to every tool.
 
 `get_mcp_usage` is an authenticated, read-only utility that reports the current billing-cycle allowance, usage, reset time, and per-tool breakdown. It remains available when the metered allowance is exhausted and links to [MCP usage](https://www.bull-ai.in/mcp/usage). It requires the least-privilege `mcp:usage:read` scope. Connections authorized before this tool was added must grant the new scope before the tool can run. Claude should request incremental consent; reconnect only if it cannot complete that authorization step-up.
 
@@ -63,7 +63,7 @@ Load the released plugin for the current Claude Code session:
 ```bash
 git clone https://github.com/Bull-AI/mcp-claude-wrapper.git
 cd mcp-claude-wrapper
-git checkout v0.3.0
+git checkout v0.3.1
 claude --plugin-dir .
 ```
 
