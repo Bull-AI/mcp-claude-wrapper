@@ -6,7 +6,7 @@ Bull AI connects Claude to company documents and data for NSE/BSE-listed Indian 
 https://www.bull-ai.in/mcp
 ```
 
-The plugin connects Claude to Bull AI's thirteen remote MCP tools and includes six workflow skills for using them effectively. The MCP server remains the canonical source of the tools' names, descriptions, schemas, annotations, and results. Claude discovers that tool surface from the server when it connects; this repository does not duplicate or redefine it.
+The plugin connects Claude to Bull AI's fourteen remote MCP tools and includes six workflow skills for using them effectively. The MCP server remains the canonical source of the tools' names, descriptions, schemas, annotations, and results. Claude discovers that tool surface from the server when it connects; this repository does not duplicate or redefine it.
 
 The remote server owns OAuth discovery, dynamic client registration, consent, scopes, rate limits, billing, and the public tool schemas. This package contains only the public connection configuration, workflow skills, documentation, and security guidance—no credentials, company data, private application code, or non-public service configuration.
 
@@ -24,16 +24,17 @@ The remote server owns OAuth discovery, dynamic client registration, consent, sc
 10. `get_company_counterparties`
 11. `get_company_revenue_segments`
 12. `get_company_kpis`
-13. `get_mcp_usage`
+13. `list_company_metrics`
+14. `get_mcp_usage`
 
 ## Included skills
 
 - **Guidance versus delivery** — compare management guidance with later company-reported outcomes while preserving temporal order, comparability limits, and paired sources.
 - **Moat and peers** — map management-claimed competitive advantages against a bounded listed-peer context without treating claims as verified moats.
-- **Revenue segmentation** — report revenue and segment splits by business segment, geography, product, or customer type with cited filing pages, fall back to company documents when extracted data is incomplete, and calculate mix changes only from cited operands.
+- **Revenue segmentation** — start from the free metrics menu, then report revenue and segment splits by business segment, geography, product, or customer type with cited filing pages, fall back to company documents when extracted data is incomplete, and calculate mix changes only from cited operands.
 - **Insider actions** — place bulk, block, or insider market transactions beside corporate-action timing without implying causation.
 - **Counterparty map** — map disclosed counterparties and identify listed-company matches only when public identity evidence supports them.
-- **Operating KPIs** — retrieve company-specific operating KPIs such as stores, subscribers, ARPU, volumes, and order book with their definitions, reported units, data-quality flags, and cited filing pages.
+- **Operating KPIs** — start from the free metrics menu, then retrieve company-specific operating KPIs such as stores, subscribers, ARPU, volumes, and order book with their definitions, reported units, data-quality flags, and cited filing pages.
 
 The skills teach Claude how to select and chain Bull AI's existing remote tools. They do not replace or override the server's canonical tool descriptions.
 
@@ -55,7 +56,7 @@ https://www.bull-ai.in/mcp
 
 Do not substitute a local, staging, legacy, or origin-service URL.
 
-`search_companies`, `list_document_availability`, and `get_mcp_usage` are free utilities. Each of the remaining ten tools counts as one tool call against the monthly allowance after a successful result. Authentication, availability, and rate limits apply to every tool.
+`search_companies`, `list_document_availability`, `list_company_metrics`, and `get_mcp_usage` are free utilities. Each of the remaining ten tools counts as one tool call against the monthly allowance after a successful result. Authentication, availability, and rate limits apply to every tool.
 
 `get_mcp_usage` is an authenticated, read-only utility that reports the current billing-cycle allowance, usage, reset time, and per-tool breakdown. It remains available when the metered allowance is exhausted and links to [MCP usage](https://www.bull-ai.in/mcp/usage). It requires the least-privilege `mcp:usage:read` scope. Connections authorized before this tool was added must grant the new scope before the tool can run. Claude should request incremental consent; reconnect only if it cannot complete that authorization step-up.
 
@@ -66,7 +67,7 @@ Load the released plugin for the current Claude Code session:
 ```bash
 git clone https://github.com/Bull-AI/mcp-claude-wrapper.git
 cd mcp-claude-wrapper
-git checkout v0.4.0
+git checkout v0.5.0
 claude --plugin-dir .
 ```
 
